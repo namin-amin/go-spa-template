@@ -20,8 +20,6 @@ func main() {
 	log.Println(isdev)
 	server := echo.New()
 
-	server.Use(middleware.CORS())
-
 	apigroup := server.Group("api",
 		middleware.AddTrailingSlash())
 
