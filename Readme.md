@@ -26,9 +26,10 @@ make dev
 - This will run  the app in production mode using the embedded files instead of proxy.
 ----
 
-NOTE & WARNINGS
+NOTE & WARNINGS 🔥
 -- 
 - Check make file before running. This template used bun for npm package management change it to your preferred one during use(npm/yarn).
 - Dont forget to run *go mod tidy* before starting anything
 - This implementation used basic envirnment variable **RUNENV** which is checked during server startup to check if to use proxy or embedded file. 
-    You can change this to your preffered method instead of this.
+    You can change this to your preffered method instead of this.(Check make command **run-prod**)
+- This uses svelte as ui app you can delete and create new vite-app with name app.
