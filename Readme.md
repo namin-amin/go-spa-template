@@ -32,4 +32,4 @@ NOTE & WARNINGS 🔥
 - Dont forget to run *go mod tidy* before starting anything
 - This implementation used basic envirnment variable **RUNENV** which is checked during server startup to check if to use proxy or embedded file. 
     You can change this to your preffered method instead of this.(Check make command **run-prod**)
-- This uses svelte as ui app you can delete and create new vite-app with name app.
+- This uses svelte as ui app you can delete and create new vite-app with name app (dont delete app/embed.go 😊).
