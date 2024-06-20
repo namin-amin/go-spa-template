@@ -9,22 +9,16 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/namin-amin/simplesend/app"
+	"github.com/namin-amin/simplesend/pkg/loadenv"
 )
 
 func main() {
-	err := godotenv.Load(".env.prod",".env",)
+	loadenv.LoadRequiredEnvFiles()
 
-	fmt.Println(os.Getenv("API_KEY"))
-	fmt.Println(os.Getenv("DB_PORT"))
-
-
-	if err != nil {
-		log.Fatalln(err)
-	}
+	fmt.Println(os.Getenv("RUNENV"))
 
 	server := echo.New()
 

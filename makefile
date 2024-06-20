@@ -14,4 +14,4 @@ build:
 	make build-npm &&  go build cmd/main.go
 
 run-prod:
-	RUNENV=build ./main
+	./main
