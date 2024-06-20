@@ -9,15 +9,23 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	app "github.com/namin-amin/simplesend/app"
+	"github.com/namin-amin/simplesend/app"
 )
 
 func main() {
+	err := godotenv.Load(".env.prod",".env",)
 
-	isdev := os.Getenv("RUNENV")
-	log.Println(isdev)
+	fmt.Println(os.Getenv("API_KEY"))
+	fmt.Println(os.Getenv("DB_PORT"))
+
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	server := echo.New()
 
 	apigroup := server.Group("api",
@@ -38,7 +46,7 @@ func main() {
 		return c.JSON(http.StatusOK, tenat)
 	})
 
-	if isdev == "build" {
+	if os.Getenv("RUNENV") == "build" {
 		RegisterAllStaticFs(app.GetAllRequiredPathsAndFS(), server)
 		server.GET("/*", echo.StaticFileHandler("dist/index.html", app.Fdir))
 
