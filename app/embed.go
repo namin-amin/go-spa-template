@@ -9,22 +9,22 @@ import (
 )
 
 //go:embed all:dist
-var Fdir embed.FS
+var FDir embed.FS
 
 func GetAllRequiredPathsAndFS() map[string]fs.FS {
-	errs:= customerros.NewErrors()
-	assets, err := fs.Sub(Fdir, "dist/assets")
+	errs := customerros.NewErrors()
+	assets, err := fs.Sub(FDir, "dist/assets")
 	errs.AddNewError(err)
-	dist, err := fs.Sub(Fdir, "dist/images")
+	dist, err := fs.Sub(FDir, "dist/images")
 	errs.AddNewError(err)
-	
-	if errs.DoErrorExists() {
+
+	if errs.DoesErrorExists() {
 		log.Fatalln("could not register required file systems")
 	}
 
-	famap := make(map[string]fs.FS)
-	famap["assets"] = assets
-	famap["images"] = dist
+	faMap := make(map[string]fs.FS)
+	faMap["assets"] = assets
+	faMap["images"] = dist
 
-	return famap
+	return faMap
 }

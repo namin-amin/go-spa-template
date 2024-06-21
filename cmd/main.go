@@ -22,27 +22,27 @@ func main() {
 
 	server := echo.New()
 
-	apigroup := server.Group("api",
+	apiGroup := server.Group("api",
 		middleware.AddTrailingSlash())
 
-	apigroup.GET("/",func(c echo.Context) error {
-		return c.String(http.StatusOK,"hello world iam namin")
+	apiGroup.GET("/", func(c echo.Context) error {
+
+		return c.String(http.StatusOK, "hello world iam namin")
 	})
 
-
-	apigroup.GET("/:id",func(c echo.Context) error {
+	apiGroup.GET("/:id", func(c echo.Context) error {
 		id := c.Param("id")
-		return c.String(http.StatusOK,fmt.Sprintf("hello world iam namin %s",id))
+		return c.String(http.StatusOK, fmt.Sprintf("hello world iam namin %s", id))
 	})
 
-	apigroup.GET("/*", func(c echo.Context) error {
-		tenat := c.Request().Header.Get("tenant")
-		return c.JSON(http.StatusOK, tenat)
+	apiGroup.GET("/*", func(c echo.Context) error {
+		tenant := c.Request().Header.Get("tenant")
+		return c.JSON(http.StatusOK, tenant)
 	})
 
 	if os.Getenv("RUNENV") == "build" {
 		RegisterAllStaticFs(app.GetAllRequiredPathsAndFS(), server)
-		server.GET("/*", echo.StaticFileHandler("dist/index.html", app.Fdir))
+		server.GET("/*", echo.StaticFileHandler("dist/index.html", app.FDir))
 
 	} else {
 		server.GET("/*", echo.WrapHandler(http.HandlerFunc(proxyPass)))
@@ -52,13 +52,13 @@ func main() {
 }
 
 func proxyPass(res http.ResponseWriter, req *http.Request) {
-	url, _ := url.Parse("http://localhost:5173/")
-	proxy := httputil.NewSingleHostReverseProxy(url)
+	uri, _ := url.Parse("http://localhost:5173/")
+	proxy := httputil.NewSingleHostReverseProxy(uri)
 	proxy.ServeHTTP(res, req)
 }
 
 func RegisterAllStaticFs(fsMap map[string]fs.FS, server *echo.Echo) {
-	for dir, fsdir := range fsMap {
-		server.StaticFS(dir, fsdir)
+	for dir, fsDir := range fsMap {
+		server.StaticFS(dir, fsDir)
 	}
 }
