@@ -26,7 +26,6 @@ func main() {
 		middleware.AddTrailingSlash())
 
 	apiGroup.GET("/", func(c echo.Context) error {
-
 		return c.String(http.StatusOK, "hello world iam namin")
 	})
 
