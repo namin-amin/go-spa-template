@@ -26,6 +26,11 @@ make dev
 - This will run  the app in production mode using the embedded files instead of proxy.
 ----
 
+Envirnment files reading is configured, currently supports
+- .env : for production
+- .env.dev : for development
+
+
 NOTE & WARNINGS 🔥
 -- 
 - Check make file before running. This template used bun for npm package management change it to your preferred one during use(npm/yarn).
