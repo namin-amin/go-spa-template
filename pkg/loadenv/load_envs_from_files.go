@@ -24,9 +24,12 @@ func LoadRequiredEnvFiles() {
 		}
 	}
 
-	if len(envsToLoad) == skippedFiles {
+	if len(envs) == skippedFiles {
+		log.Println("No env files to load")
 		return
 	}
+
+	log.Println("Loading env files")
 
 	err := godotenv.Load(envsToLoad...)
 

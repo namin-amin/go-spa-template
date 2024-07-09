@@ -1,0 +1,13 @@
+<h1>{{title}}</h1>
+
+
+
+<p>{{text()}}</p>
+
+<input type="text" name="test" id=""  [(ngModel)]="text" />
+
+<button (click)="getNewText()" >
+  get new data
+</button>
+
+<router-outlet></router-outlet>
