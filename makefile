@@ -2,13 +2,13 @@ dev-go:
 	go run cmd/main.go
 
 dev-npm:
-	cd ui && bun i && bun run start
+	cd ui && npm install && npm run start
 
 dev:
 	make -j 2 dev-go dev-npm
 
 build-npm:
-	cd ui && bun i && bun run build
+	cd ui && npm install && npm run build
 
 build:
 	make build-npm &&  go build cmd/main.go
