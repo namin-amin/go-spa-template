@@ -21,7 +21,7 @@ type RegisterStaticRouteHandler func(route string, fileSystem fs.FS)
 
 func getAllRequiredPathsAndFS() map[string]fs.FS {
 	errs := customerros.NewErrors()
-	assets, err := fs.Sub(FDir, "dist/browser")
+	assets, err := fs.Sub(FDir, "dist")
 	errs.AddNewError(err)
 
 	if errs.DoesErrorExists() {

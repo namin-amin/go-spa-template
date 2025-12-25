@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   constructor(private httpClient: HttpClient) {}
-  title = 'ui';
+  title = signal('ui');
 
   text = signal('');
 
@@ -22,7 +22,8 @@ export class AppComponent {
         responseType: 'json',
       })
       .subscribe((data) => {
-        this.title = data;
+        console.log(data);
+        this.title.set(data)
       });
   }
 }
